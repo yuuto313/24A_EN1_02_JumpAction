@@ -18,12 +18,12 @@ public class ArrowDraw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        arrowImage.gameObject.SetActive(false);
-
         //クリックしたタイミングでtrueを返す
         if (Input.GetMouseButtonDown(0))
         {
             clickPosition = Input.mousePosition;
+            //クリックしたら矢印を描画
+            arrowImage.gameObject.SetActive(true);
         }
 
         //クリックしているとtrueを返す
@@ -41,8 +41,11 @@ public class ArrowDraw : MonoBehaviour
             //矢印の画像の大きさをドラッグした距離に合わせる
             arrowImage.rectTransform.sizeDelta = new Vector2(size, size);
             Debug.Log(dist);
-            //クリックしたら矢印を描画
-            arrowImage.gameObject.SetActive(true);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            //離したら描画を消す
+            arrowImage.gameObject.SetActive(false);
         }
     }
 }
