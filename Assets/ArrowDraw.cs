@@ -24,6 +24,13 @@ public class ArrowDraw : MonoBehaviour
             clickPosition = Input.mousePosition;
             //クリックしたら矢印を描画
             arrowImage.gameObject.SetActive(true);
+            
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            //離したら描画を消す
+            arrowImage.gameObject.SetActive(false);
         }
 
         //クリックしているとtrueを返す
@@ -42,10 +49,6 @@ public class ArrowDraw : MonoBehaviour
             arrowImage.rectTransform.sizeDelta = new Vector2(size, size);
             Debug.Log(dist);
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            //離したら描画を消す
-            arrowImage.gameObject.SetActive(false);
-        }
+        
     }
 }

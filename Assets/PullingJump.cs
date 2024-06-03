@@ -12,6 +12,7 @@ public class PullingJump : MonoBehaviour
     void Start()
     {
         rb=gameObject.GetComponent<Rigidbody>();
+        Physics.gravity=new Vector3(0,-9.8f,0);
     }
 
     // Update is called once per frame
@@ -25,6 +26,13 @@ public class PullingJump : MonoBehaviour
         {
             //クリックした座標と離した座標の差分を取得
             Vector3 dist=clickPosition-Input.mousePosition;
+            //クリックとリリースが同じ座標ならば無視
+            if (dist.sqrMagnitude == 0)
+            {
+                return;
+            }
+            //差分を標準化し、jumpPowerを掛け合わせた値を移動量とする
+            rb.velocity = dist.normalized * jumpPower;
         }
     }
 }
